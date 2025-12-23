@@ -1,5 +1,10 @@
-/* Loaded by Obsidian automatically if present next to manifest.json */
-.obsidian-vue-vite-ts-root {
-    height: 100%;
-  }
-  
+.inline-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 4px;
+  margin: 0 0 4px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  color: var(--text-normal);
+}

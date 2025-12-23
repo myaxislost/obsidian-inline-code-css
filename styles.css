@@ -1,1 +1,10 @@
-.inline-test{display:inline-flex;align-items:center;gap:6px;padding:0 4px;margin:0 0 4px;border-radius:5px;font-size:.9em;border:1px solid var(--background-modifier-border);color:var(--text-normal)}
+.inline-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 4px;
+  margin: 0 0 4px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  color: var(--text-normal);
+}

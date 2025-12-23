@@ -1,6 +1,7 @@
-// settings/settingsTab.ts
-import { App, Notice, PluginSettingTab, Setting } from "obsidian";
+// src/settings/settingsTab.ts
+import { App, PluginSettingTab, Setting } from "obsidian";
 import type VueViteTsPlugin from "../main";
+import { split } from "../util/inlineCodeCssMatch";
 
 export class VueViteTsSettingTab extends PluginSettingTab {
   private plugin: VueViteTsPlugin;
@@ -25,18 +26,18 @@ export class VueViteTsSettingTab extends PluginSettingTab {
         btn.setCta();
         btn.setButtonText("Add");
         btn.onClick(async () => {
-          this.plugin.settings.prefixClass.push("<:example-class")
+          this.plugin.settings.prefixClass.push("<:example-class");
           await this.plugin.saveSettings();
           this.display();
         });
       })
       .addButton((btn) => {
-        btn.setButtonText("Save")
+        btn.setButtonText("Save");
         btn.onClick(async () => {
           await this.plugin.saveSettings();
           this.display();
-        })
-      })
+        });
+      });
 
     if (entries.length === 0) {
       containerEl.createEl("p", { text: "No mappings yet. Click Add to create one." });
@@ -44,27 +45,33 @@ export class VueViteTsSettingTab extends PluginSettingTab {
     }
 
     for (let i = 0; i < entries.length; i++) {
-      const entry = entries[i]
-      const parts = entry.split(":")
+      const entry = entries[i] ?? "";
+
+      const parsed = split(entry) ?? { left: entry, right: "" };
+      let prefix = parsed.left;
+      let cls = parsed.right;
+
       const row = new Setting(containerEl).setName("Mapping");
 
       row.addText((t) => {
         t.setPlaceholder("prefix");
-        t.setValue(parts[0]);
+        t.setValue(prefix);
         t.onChange(async (next) => {
-          if (next.length == 0) return
+          if (next.length === 0) return;
 
-          entries[i] = `${next}:${parts[1]}`
+          prefix = next;
+          entries[i] = `${prefix}:${cls}`;
         });
       });
-      
+
       row.addText((t) => {
         t.setPlaceholder("class");
-        t.setValue(parts[1]);
+        t.setValue(cls);
         t.onChange(async (next) => {
-          if (next.length == 0) return
+          if (next.length === 0) return;
 
-          entries[i] = `${parts[0]}:${next}`
+          cls = next;
+          entries[i] = `${prefix}:${cls}`;
         });
       });
 
@@ -72,7 +79,7 @@ export class VueViteTsSettingTab extends PluginSettingTab {
         btn.setWarning();
         btn.setButtonText("Remove");
         btn.onClick(async () => {
-          entries.splice(i, 1)
+          entries.splice(i, 1);
           await this.plugin.saveSettings();
           this.display();
         });
