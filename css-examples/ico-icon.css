@@ -1,0 +1,15 @@
+.with-icon {
+  padding-left: 0;
+  line-height: 1;
+  border-radius: 12px;
+  padding: 5px;
+  border: 1px solid var(--background-modifier-border);
+}
+
+.with-icon::before {
+  content: "";
+  left: 0;
+  width: 1em;
+  height: 1em;
+  background: no-repeat center / contain url("https://google.com/favicon.ico");
+}

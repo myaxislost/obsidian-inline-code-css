@@ -1,0 +1,33 @@
+.dialogue-left,
+.dialogue-right {
+  color: var(--text-normal);
+  font-weight: 400;
+  max-width: 50%;
+  padding: 2px 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 2px 2px;
+}
+.dialogue-right::before,
+.dialogue-left::before {
+  content: "-";
+  font-weight: 400;
+}
+
+.dialogue-left {
+  background-color: #144a69;
+}
+
+.dialogue-right {
+  align-items: end;
+  background-color: #146954;
+}
+
+span:has(.dialogue-left),
+span:has(.dialogue-right) {
+  display: inline-flex;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+span:has(.dialogue-right) {
+  justify-content: end;
+}

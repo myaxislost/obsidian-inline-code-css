@@ -1,0 +1,10 @@
+.error-tag {
+  background-color: var(--color-red);
+  color: black;
+  border: 1px solid white;
+}
+.error-tag::after {
+  content: "⚠";
+  border-left: 1px solid white;
+  padding-left: 3px;
+}

@@ -1,0 +1,29 @@
+.rainbow-shift {
+  display: inline-block;
+  padding: 0px 5px;
+  border-radius: 0.35em;
+  color: black;
+  font-weight: 700;
+
+  background: linear-gradient(
+    90deg,
+    #ff004c,
+    #ff8a00,
+    #ffe600,
+    #00d084,
+    #00a2ff,
+    #7a00ff,
+    #ff004c
+  );
+  background-size: 600% 100%;
+  animation: rainbowShift 12s linear infinite;
+}
+
+@keyframes rainbowShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
